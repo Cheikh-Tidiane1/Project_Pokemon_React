@@ -23,7 +23,7 @@
   article {
     width: 350px;
     border-radius: 20px;
-    border: 10px solid grey; /* #3d7a6bb3 */
+    /* border: 10px solid grey; #3d7a6bb3 */
     background-color: grey;
     overflow: hidden;
     margin: 10px;

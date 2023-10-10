@@ -1,13 +1,18 @@
-
-
-
+import "./CardPokemon.scss";
+import "../css/style.css"
+import "../css/normalize.css"
 
 function CardPokemon (props) {
     return(
     <>
     {props.data.map((pokemon, index)=> (
-      <article key={'Pokemon'+ index} style={{backgroundColor: getColorHexa(pokemon.apiTypes[0].name) , borderColor: getColorHexa(pokemon.apiTypes[0].name) }}>
-        <figure>
+      <article key={'Pokemon'+ index} id="pokeArticle" data-reverse={false} onClick={(e)=>{
+            e.currentTarget.dataset.reverse = true ;
+      }}>
+        <div className="cardInner"
+            style={{backgroundColor: getColorHexa(pokemon.apiTypes[0].name) ,
+            borderColor: getColorHexa(pokemon.apiTypes[0].name) }}>
+        <figure className="cardFront">
           <picture>
             <img src={pokemon.image} alt={pokemon.name} />
           </picture>
@@ -23,6 +28,10 @@ function CardPokemon (props) {
             </ol>
           </figcaption>
         </figure>
+        <div className="cardBack">
+          <a href="#">Voir plus</a>
+        </div>
+        </div>
       </article>
       ))
       }
