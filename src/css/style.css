@@ -8,6 +8,10 @@
   h1 {
     text-align: center;
   }
+
+  h1 img{
+    width: 650px;
+  }
   main {
     display: flex;
     flex-direction: row;
