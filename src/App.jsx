@@ -5,7 +5,9 @@ import data from "./data/data.json";
 import pokemonLogo from "../public/pokImg.svg";
 import CardPokemon from "./Components/CardPokemon";
 import Sidebar from "./Components/Sidebar";
+import { useState } from "react";
 function App() {
+  const [pokedex, setPokedex] = useState([]);
   return (
     <>
       <div className="header">
@@ -14,11 +16,16 @@ function App() {
         </h1>
       </div>
       <main>
-      <div id="sideBar"> 
-        <Sidebar/>
-      </div>
-      {data.map((pokemon, index) => (
-          <CardPokemon data={pokemon} key={index}/>
+        <div id="sideBar">
+          <Sidebar pokedex={pokedex} setPokedex={setPokedex} />
+        </div>
+        {data.map((pokemon, index) => (
+          <CardPokemon
+            pokedex={pokedex}
+            setPokedex={setPokedex}
+            data={pokemon}
+            key={index}
+          />
         ))}
       </main>
     </>

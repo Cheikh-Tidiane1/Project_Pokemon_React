@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./Sidebar.scss"
-import pokeball from "../../public/pokéball.png"
+import "./Sidebar.scss";
+import pokeball from "../../public/pokéball.png";
 
-export default function Sidebar() {
+export default function Sidebar(props) {
   const [isOpen, setIsOpen] = useState(false);
   return isOpen ? (
     <div className="lmj-cart">
@@ -13,10 +13,18 @@ export default function Sidebar() {
         X
       </button>
       <h2>
-        <img src="" alt="" />
-        <p>Pokédex :  </p>
+        <img src={pokeball} alt="" />
+        <p>Pokédex ({props.pokedex.length})</p>
       </h2>
-      <div>Votre Pokédex est vide</div>
+      {props.pokedex.length != 0 ? (
+        <ul>
+          {props.pokedex.map((poke, i) => (
+            <li key={i}>{poke.name}</li>
+          ))}
+        </ul>
+      ) : (
+        <div>Votre Pokédex est vide</div>
+      )}
     </div>
   ) : (
     <div className="lmj-cart-closed">
@@ -25,7 +33,7 @@ export default function Sidebar() {
         onClick={() => setIsOpen(true)}
       >
         <img src={pokeball} alt="" />
-        <p>Pokédex : </p>
+        <p>Pokédex ({props.pokedex.length})</p>
       </button>
     </div>
   );
