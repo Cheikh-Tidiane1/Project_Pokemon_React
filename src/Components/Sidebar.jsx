@@ -3,6 +3,7 @@ import "./Sidebar.scss";
 import pokeball from "../../public/pokéball.png";
 
 export default function Sidebar(props) {
+  
   const [isOpen, setIsOpen] = useState(false);
   return isOpen ? (
     <div className="lmj-cart">

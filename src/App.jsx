@@ -1,13 +1,17 @@
-// import './App.css'
 import "./css/style.css";
 import "./css/normalize.css";
 import data from "./data/data.json";
 import pokemonLogo from "../public/pokImg.svg";
 import CardPokemon from "./Components/CardPokemon";
 import Sidebar from "./Components/Sidebar";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 function App() {
   const [pokedex, setPokedex] = useState([]);
+
+    useEffect(()=> {
+      console.log(`Le Pokédex possède ${pokedex.length} Pokémons`);
+    },[pokedex])
+
   return (
     <>
       <div className="header">
