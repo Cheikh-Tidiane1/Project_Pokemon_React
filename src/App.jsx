@@ -4,15 +4,25 @@ import data from "./data/data.json";
 import pokemonLogo from "../public/pokImg.svg";
 import CardPokemon from "./Components/CardPokemon";
 import Sidebar from "./Components/Sidebar";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 function App() {
+  const [dataPokemon, setDataPokemon] = useState([]);
   const [pokedex, setPokedex] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    useEffect(()=> {
-      console.log(`Le Pokédex possède ${pokedex.length} Pokémons`);
-    },[pokedex])
+  useEffect(() => {
+    fetch("https://pokebuildapi.fr/api/v1/pokemon/generation/1")
+      .then((response) => response.json())
+      .then((data) => {
+        setDataPokemon(data);
+        setLoading(true); 
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
 
-  return (
+  return loading ? (
     <>
       <div className="header">
         <h1>
@@ -23,7 +33,7 @@ function App() {
         <div id="sideBar">
           <Sidebar pokedex={pokedex} setPokedex={setPokedex} />
         </div>
-        {data.map((pokemon, index) => (
+        {dataPokemon.map((pokemon, index) => (
           <CardPokemon
             pokedex={pokedex}
             setPokedex={setPokedex}
@@ -33,7 +43,11 @@ function App() {
         ))}
       </main>
     </>
-  );
+  ) : (
+    <div>
+      <p style={{textAlign: "center" , width: "100%" , color: "white"}}>Chargement des données...</p>
+    </div>
+  )
 }
 
 export default App;
