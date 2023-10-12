@@ -9,13 +9,13 @@
     padding: 32px;
     display: flex;
     flex-direction: column;
-    // justify-content: flex-start;
-    // align-items: center;
-    // width: 200px;
+    position: relative; 
+    left: 2px;
     height: 85%;
     z-index: 99;
     animation: fadeIn 1s;
     border-radius: 0 5px 5px 0;
+    // float: left;
   }
   
   @keyframes fadeIn {
@@ -56,11 +56,12 @@
   .lmj-cart-closed {
     padding: 10px;
     background-color: #ef4036;
-    position: relative;
+    position: fixed;
+    margin-right: 150px;
     z-index: 99;
     border-radius: 0 5px 5px 0;
-    left: -140px;
-    margin-right: 0;
+    left: 10px;
+    // margin-right: 0;
   }
   
   .lmj-cart-closed > button {

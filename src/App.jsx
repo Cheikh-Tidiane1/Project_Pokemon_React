@@ -5,6 +5,7 @@ import pokemonLogo from "../public/pokImg.svg";
 import CardPokemon from "./Components/CardPokemon";
 import Sidebar from "./Components/Sidebar";
 import { useState, useEffect } from "react";
+import Spinner from "./Components/Spinner";
 function App() {
   const [dataPokemon, setDataPokemon] = useState([]);
   const [pokedex, setPokedex] = useState([]);
@@ -15,14 +16,14 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setDataPokemon(data);
-        setLoading(true); 
+        setLoading(true);
       })
       .catch((err) => {
         console.log(err.message);
       });
   }, []);
 
-  return loading ? (
+  return (
     <>
       <div className="header">
         <h1>
@@ -33,21 +34,21 @@ function App() {
         <div id="sideBar">
           <Sidebar pokedex={pokedex} setPokedex={setPokedex} />
         </div>
-        {dataPokemon.map((pokemon, index) => (
-          <CardPokemon
-            pokedex={pokedex}
-            setPokedex={setPokedex}
-            data={pokemon}
-            key={index}
-          />
-        ))}
+        {loading ? (
+          dataPokemon.map((pokemon, index) => (
+            <CardPokemon
+              pokedex={pokedex}
+              setPokedex={setPokedex}
+              data={pokemon}
+              key={index}
+            />
+          ))
+        ) : (
+          <Spinner />
+        )}
       </main>
     </>
-  ) : (
-    <div>
-      <p style={{textAlign: "center" , width: "100%" , color: "white"}}>Chargement des données...</p>
-    </div>
-  )
+  );
 }
 
 export default App;
