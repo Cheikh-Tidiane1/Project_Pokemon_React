@@ -1,9 +1,10 @@
+import Select from "../Components/Select";
 
 
 function MentionsLegales() {
     return (
       <>
-        <h1>MentionsLegales</h1>
+        <Select/>
       </>
     );
   }

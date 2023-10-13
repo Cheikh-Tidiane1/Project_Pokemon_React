@@ -6,16 +6,23 @@ import "../css/normalize.css";
 import pokemonLogo from "../../public/pokImg.svg";
 
 function DetailPokemon() {
-  let tab;
-  const [pokemonData, setPokemonData] = useState({});
+  const [pokemonData, setPokemonData] = useState([]);
   let params = useParams();
   useEffect(() => {
     fetch(`https://pokebuildapi.fr/api/v1/pokemon/${params.id}`)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erreur lors de la récupération des données");
+        }
+        return response.json();
+      })
       .then((data) => {
         setPokemonData(data);
+      })
+      .catch((error) => {
+        console.error(error);
       });
-  }, []);
+  }, [params.id]);
 
   return (
     <>

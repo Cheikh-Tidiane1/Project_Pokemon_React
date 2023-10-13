@@ -7,15 +7,16 @@ import Sidebar from "../Components/Sidebar";
 import { useState, useEffect } from "react";
 import Spinner from "../Components/Spinner";
 import Footer from "../Components/Footer";
-import DetailPokemon from "./DetailsPokemon";
+import Select from "../Components/Select";
 
 function Home() {
   const [dataPokemon, setDataPokemon] = useState([]);
   const [pokedex, setPokedex] = useState([]);
+  const [selectValue, setSelectValue] = useState(1);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("https://pokebuildapi.fr/api/v1/pokemon/generation/1")
+    fetch(`https://pokebuildapi.fr/api/v1/pokemon/generation/${selectValue}`)
       .then((response) => response.json())
       .then((data) => {
         setDataPokemon(data);
@@ -24,8 +25,9 @@ function Home() {
       .catch((err) => {
         console.log(err.message);
       });
-  }, []);
+  }, [selectValue]);
 
+  console.log(selectValue);
   return (
     <>
       <div className="header">
@@ -34,6 +36,9 @@ function Home() {
             <img src={pokemonLogo} alt="Pokemon-Logo" />
           </Link>
         </h1>
+        <div id="Select">
+          <Select setSelectValue={setSelectValue} />
+        </div>
       </div>
       <main>
         <div id="sideBar">
