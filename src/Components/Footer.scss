@@ -1,0 +1,23 @@
+footer {
+    background-color: #3461ad;
+    padding: 5%;
+    margin-top: 15px;
+    a {
+        color: white;
+        text-decoration: none;
+    }
+}
+
+.footer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer li{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    
+}
+
+

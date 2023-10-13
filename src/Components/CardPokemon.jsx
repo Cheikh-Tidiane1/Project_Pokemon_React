@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./CardPokemon.scss";
 import "../css/style.css";
 import "../css/normalize.css";
 import iconAdd from "../../public/add-circle-line.svg";
+
 export default function CardPokemon(props) {
   const [isOpen, setIsOpen] = useState(Boolean);
   let pokemon = props.data;
@@ -57,7 +59,7 @@ export default function CardPokemon(props) {
           </figcaption>
         </figure>
         <div className="cardBack">
-          <a href="#">Voir plus</a>
+          <Link to={`DetailPokemon/${pokemon.pokedexId}`}>Voir plus</Link>
         </div>
       </div>
     </article>
